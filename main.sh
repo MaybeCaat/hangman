@@ -1,6 +1,6 @@
 #!/bin/bash
 words_filename=words_data
-hangman=("нулевой" "первый" "второй")
+hangman_folder=hangman_images
 function init_game() {
     word_string=(`shuf -n 1 $words_filename`)
     word=(`echo $word_string | grep -o .`)
@@ -18,7 +18,11 @@ function init_game() {
 function draw_current_hangman() {
     echo "Слово: ${correct_letters[@]}"
     echo "Ошибки: ${wrong_letters[@]}"
-    # echo "${hangman[$current_hangman]}"
+    while read line
+    do
+        echo $line
+    done < $hangman_folder/$current_hangman
+    echo
 }
 
 function input_new_letter() {
@@ -31,7 +35,6 @@ function input_new_letter() {
             temp_index=$i
         fi
     done
-    # echo $temp_index
     if [[ $temp_index -eq -1 ]]
     then
         errors_counter=$(($errors_counter+1))
