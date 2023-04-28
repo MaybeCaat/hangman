@@ -12,3 +12,6 @@ this function is *drawing* current hangman, correct letters of word and errors l
 - [ ] Random words generator
 - [ ] Hangman images
 - [ ] Comments to code
+- [ ] End game
+- [ ] Letter has already been introduced
+- [ ] Add all existing guessed letters (2+ identical letters)
