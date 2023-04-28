@@ -27,6 +27,7 @@ function draw_current_hangman() {
 
 function input_new_letter() {
     read -p "Введите новую букву: " current_letter
+    current_letter=`echo "$current_letter" | sed 's/[А-Я]/\L&/g'`
     temp_index=-1
     for i in "${!word[@]}"
     do
