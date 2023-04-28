@@ -14,9 +14,10 @@ this function is *drawing* current hangman, correct letters of word and errors l
 
 this function is *inputting* new letter and checking the presence of a letter in word
 # TODO
-- [ ] Random words generator
+- [x] Random words generator
 - [ ] Hangman images
 - [ ] Comments to code
 - [ ] End game
 - [ ] Letter has already been introduced
 - [ ] Add all existing guessed letters (2+ identical letters)
+- [ ] Lowercase translation of the inputted letter

@@ -1,7 +1,9 @@
 #!/bin/bash
+words_filename=words_data
 hangman=("нулевой" "первый" "второй")
 function init_game() {
-    word=("п" "р" "о" "в" "е" "р" "к" "а")
+    word_string=(`shuf -n 1 $words_filename`)
+    word=(`echo $word_string | grep -o .`)
     correct_letters=()
     for (( i=0; i<${#word[@]}; i++ ))
     do
@@ -29,7 +31,7 @@ function input_new_letter() {
             temp_index=$i
         fi
     done
-    echo $temp_index
+    # echo $temp_index
     if [[ $temp_index -eq -1 ]]
     then
         errors_counter=$(($errors_counter+1))
