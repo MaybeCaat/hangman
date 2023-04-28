@@ -8,6 +8,8 @@ Main file contains functions:
 this function is *initializating* all variables (correct word, right letters, wrong letters)
 - draw_current_hangman()
 this function is *drawing* current hangman, correct letters of word and errors letters
+- input_new_letter()
+this function is *inputting* new letter and checking the presence of a letter in word
 # TODO
 - [ ] Random words generator
 - [ ] Hangman images
