@@ -30,28 +30,29 @@ function draw_current_hangman() {
 function input_new_letter() {
     read -p "Введите новую букву: " current_letter
     current_letter=`echo "$current_letter" | sed 's/[А-Я]/\L&/g'`
-    temp_index=-1
+    is_word_has_letter=0
     for i in "${!word[@]}"
     do
         if [[ "${word[$i]}" = "${current_letter}" ]]
         then
-            temp_index=$i
+            is_word_has_letter=1
+            correct_letters[$i]=${word[$i]}
+            remaining_letters=$(($remaining_letters-1))
         fi
     done
-    if [[ $temp_index -eq -1 ]]
+
+    if [[ $remaining_letters -eq 0 ]]
+    then
+        win
+    fi
+
+    if [[ $is_word_has_letter -eq 0 ]]
     then
         current_hangman=$(($corrent_letter+1))
         wrong_letters+=($current_letter)
         if [[ $current_hangman -eq 6 ]]
         then
             game_over
-        fi
-    else
-        correct_letters[$temp_index]=${word[$temp_index]}
-        remaining_letters=$(($remaining_letters-1))
-        if [[ $remaining_letters -eq 0 ]]
-        then
-            win
         fi
     fi
     draw_current_hangman
