@@ -31,7 +31,7 @@ This folder contains hangman images that are used in the stages of the game
 - [x] Letter has already been introduced
 - [x] Add all existing guessed letters (2+ identical letters)
 - [x] Lowercase translation of the inputted letter
-- [ ] 1 letter limit
+- [x] 1 letter limit
 - [x] Check input letter (not space, not number)
 - [ ] Refactoring code into multiple functions and files
 - [ ] Add english language to game (change language)

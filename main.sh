@@ -3,6 +3,7 @@ words_filename=words_data
 hangman_folder=hangman_images
 function init_game() {
     echo "Приветствую в игре 'Виселица'"
+    echo "Вводите по одной букве, в противном случае будет браться первая буква"
     echo "Я загадал новое слово, начинаем игру!"
     echo
     word_string=(`shuf -n 1 $words_filename`)
