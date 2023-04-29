@@ -4,6 +4,7 @@ hangman_folder=hangman_images
 function init_game() {
     echo "Приветствую в игре 'Виселица'"
     echo "Я загадал новое слово, начинаем игру!"
+    echo
     word_string=(`shuf -n 1 $words_filename`)
     word=(`echo $word_string | grep -o .`)
     correct_letters=()
@@ -30,6 +31,13 @@ function draw_current_hangman() {
 function input_new_letter() {
     read -p "Введите новую букву: " current_letter
     current_letter=`echo "$current_letter" | sed 's/[А-Я]/\L&/g'`
+
+    if [[ "${correct_letters[*]}" =~ "${current_letter}" || "${wrong_letters[*]}" =~ "${current_letter}"  ]]
+    then
+        echo "Вы уже вводили данную букву!"
+        input_new_letter
+    fi
+
     is_word_has_letter=0
     for i in "${!word[@]}"
     do

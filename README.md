@@ -29,7 +29,7 @@ This folder contains hangman images that are used in the stages of the game
 - [ ] Change hangman images
 - [ ] Comments to code
 - [x] End game (game over, win, new game after end last game)
-- [ ] Letter has already been introduced
+- [x] Letter has already been introduced
 - [x] Add all existing guessed letters (2+ identical letters)
 - [x] Lowercase translation of the inputted letter
 - [ ] 1 letter limit
