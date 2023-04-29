@@ -34,7 +34,7 @@ function input_new_letter() {
     current_letter=${current_letter:0:1}
     current_letter=`echo "$current_letter" | sed 's/[А-Я]/\L&/g'`
 
-    if [[ ! "$current_letter" || "$current_letter" != *[a-z]* ]]
+    if [[ ! "$current_letter" || "$current_letter" != *[а-я]* ]]
     then
         echo "Вы ввели недопустимый символ! (цифру, пробел и т.п.)"
         input_new_letter
