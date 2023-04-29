@@ -28,9 +28,15 @@ This folder contains hangman images that are used in the stages of the game
 - [x] Hangman images
 - [ ] Change hangman images
 - [ ] Comments to code
-- [ ] End game
+- [x] End game (game over, win, new game after end last game)
 - [ ] Letter has already been introduced
 - [ ] Add all existing guessed letters (2+ identical letters)
 - [x] Lowercase translation of the inputted letter
 - [ ] 1 letter limit
 - [ ] Check input letter (not space, not number)
+- [ ] Refactoring code into multiple functions and files
+- [ ] Fill words_data file with words for game
+- [ ] Exit in any stage of the game
+- [ ] Add english language to game (change language)
+- [ ] Input full word (not letter)
+- [ ] Exit game in any stage of the game

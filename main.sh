@@ -2,6 +2,8 @@
 words_filename=words_data
 hangman_folder=hangman_images
 function init_game() {
+    echo "Приветствую в игре 'Виселица'"
+    echo "Я загадал новое слово, начинаем игру!"
     word_string=(`shuf -n 1 $words_filename`)
     word=(`echo $word_string | grep -o .`)
     correct_letters=()
@@ -10,7 +12,7 @@ function init_game() {
         correct_letters+=("_")
     done
     wrong_letters=()
-    errors_counter=0
+    remaining_letters=${#word[@]}
     current_hangman=0
     input_new_letter
 }
@@ -38,14 +40,49 @@ function input_new_letter() {
     done
     if [[ $temp_index -eq -1 ]]
     then
-        errors_counter=$(($errors_counter+1))
         current_hangman=$(($corrent_letter+1))
         wrong_letters+=($current_letter)
+        if [[ $current_hangman -eq 6 ]]
+        then
+            game_over
+        fi
     else
         correct_letters[$temp_index]=${word[$temp_index]}
+        remaining_letters=$(($remaining_letters-1))
+        if [[ $remaining_letters -eq 0 ]]
+        then
+            win
+        fi
     fi
     draw_current_hangman
     input_new_letter
+}
+
+function game_over() {
+    echo "Вы проиграли!"
+    echo "Было загадано слово ${word[@]}"
+    echo "Вы отгадали: ${correct_letters[@]}"
+    read -p "Введите q, чтобы выйти или любой другой символ, чтобы начать новую игру: " new
+    if [[ $new == "q" ]]
+    then
+        exit 0
+    else
+        echo
+        init_game
+    fi
+}
+
+function win() {
+    echo "Вы выиграли!"
+    echo "Загаданное слово: ${word[@]}"
+    read -p "Введите q, чтобы выйти или любой другой символ, чтобы начать новую игру: " new
+    if [[ $new == "q" ]]
+    then
+        exit 0
+    else
+        echo
+        init_game
+    fi
 }
 
 init_game
