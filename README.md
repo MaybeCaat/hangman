@@ -23,11 +23,10 @@ The file contains words that are used as riddles in the game
 
 ## hangman_images
 This folder contains hangman images that are used in the stages of the game
-# TODO
+# TODO (game logic)
 - [x] Random words generator
 - [x] Hangman images
-- [ ] Change hangman images
-- [ ] Comments to code
+- [ ] Change hangman images and game design
 - [x] End game (game over, win, new game after end last game)
 - [x] Letter has already been introduced
 - [x] Add all existing guessed letters (2+ identical letters)
@@ -35,10 +34,13 @@ This folder contains hangman images that are used in the stages of the game
 - [ ] 1 letter limit
 - [ ] Check input letter (not space, not number)
 - [ ] Refactoring code into multiple functions and files
-- [ ] Fill words_data file with words for game
 - [ ] Exit in any stage of the game
 - [ ] Add english language to game (change language)
 - [ ] Input full word (not letter)
 - [ ] Exit game in any stage of the game
 - [ ] Refactor code
+
+# TODO (after creating game)
 - [ ] Write README (all functions + how to use)
+- [ ] Fill words_data file with words for game
+- [ ] Comments to code

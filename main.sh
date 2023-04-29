@@ -14,17 +14,17 @@ function init_game() {
     done
     wrong_letters=()
     remaining_letters=${#word[@]}
-    current_hangman=0
     input_new_letter
 }
 
 function draw_current_hangman() {
     echo "Слово: ${correct_letters[@]}"
     echo "Ошибки: ${wrong_letters[@]}"
+    echo "Осталось ошибок: $((8-${#wrong_letters[@]}))"
     while read line
     do
-        echo $line
-    done < $hangman_folder/$current_hangman
+        echo "$line"
+    done < $hangman_folder/${#wrong_letters[@]}
     echo
 }
 
@@ -51,15 +51,16 @@ function input_new_letter() {
 
     if [[ $remaining_letters -eq 0 ]]
     then
+        draw_current_hangman
         win
     fi
 
     if [[ $is_word_has_letter -eq 0 ]]
     then
-        current_hangman=$(($corrent_letter+1))
         wrong_letters+=($current_letter)
-        if [[ $current_hangman -eq 6 ]]
+        if [[ ${#wrong_letters[@]} -eq 7 ]]
         then
+            draw_current_hangman
             game_over
         fi
     fi
