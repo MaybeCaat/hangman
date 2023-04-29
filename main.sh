@@ -30,7 +30,14 @@ function draw_current_hangman() {
 
 function input_new_letter() {
     read -p "Введите новую букву: " current_letter
+    current_letter=${current_letter:0:1}
     current_letter=`echo "$current_letter" | sed 's/[А-Я]/\L&/g'`
+
+    if [[ ! "$current_letter" || "$current_letter" != *[a-z]* ]]
+    then
+        echo "Вы ввели недопустимый символ! (цифру, пробел и т.п.)"
+        input_new_letter
+    fi
 
     if [[ "${correct_letters[*]}" =~ "${current_letter}" || "${wrong_letters[*]}" =~ "${current_letter}"  ]]
     then

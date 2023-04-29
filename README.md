@@ -32,12 +32,10 @@ This folder contains hangman images that are used in the stages of the game
 - [x] Add all existing guessed letters (2+ identical letters)
 - [x] Lowercase translation of the inputted letter
 - [ ] 1 letter limit
-- [ ] Check input letter (not space, not number)
+- [x] Check input letter (not space, not number)
 - [ ] Refactoring code into multiple functions and files
-- [ ] Exit in any stage of the game
 - [ ] Add english language to game (change language)
 - [ ] Input full word (not letter)
-- [ ] Exit game in any stage of the game
 - [ ] Refactor code
 
 # TODO (after creating game)
