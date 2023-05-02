@@ -35,8 +35,9 @@ This folder contains hangman images that are used in the stages of the game
 - [x] Check input letter (not space, not number)
 - [ ] Refactoring code into multiple functions and files
 - [ ] Add english language to game (change language)
-- [ ] Input full word (not letter)
+- [x] Input full word (not letter)
 - [ ] Refactor code
+- [ ] Add choose length of word
 
 # TODO (after creating game)
 - [ ] Write README (all functions + how to use)

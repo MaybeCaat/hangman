@@ -3,7 +3,7 @@ words_filename=words_data
 hangman_folder=hangman_images
 function init_game() {
     echo "Приветствую в игре 'Виселица'"
-    echo "Вводите по одной букве, в противном случае будет браться первая буква"
+    echo "Вводите по одной букве или слово целиком, в противном случае будет браться первая буква"
     echo "Я загадал новое слово, начинаем игру!"
     echo
     word_string=(`shuf -n 1 $words_filename`)
@@ -31,8 +31,18 @@ function draw_current_hangman() {
 
 function input_new_letter() {
     read -p "Введите новую букву: " current_letter
-    current_letter=${current_letter:0:1}
-    current_letter=`echo "$current_letter" | sed 's/[А-Я]/\L&/g'`
+
+    if [[ ${current_letter} == ${word_string} ]]
+    then
+        win
+    elif [[ ${#current_letter} -eq ${#word[@]} ]]
+    then
+        echo "Неверное слово! Попробуйте другое слово или букву!"
+        input_new_letter
+    else
+        current_letter=${current_letter:0:1}
+        current_letter=`echo "$current_letter" | sed 's/[А-Я]/\L&/g'`
+    fi
 
     if [[ ! "$current_letter" || "$current_letter" != *[а-я]* ]]
     then
