@@ -30,10 +30,10 @@ function draw_current_hangman() {
     echo "Слово: ${correct_letters[@]}"
     echo "Ошибки: ${wrong_letters[@]}"
     echo "Осталось ошибок: $((8-${#wrong_letters[@]}))"
-    while read line
+    while IFS= read line
     do
-        echo "$line"
-    done < $hangman_folder/${#wrong_letters[@]}
+        echo -E "$line"
+    done <<< `cat $hangman_folder/${#wrong_letters[@]}`
     echo
 }
 
