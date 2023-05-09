@@ -1,6 +1,35 @@
 #!/bin/bash
-words_filename=words_data
+language=ru
+langset=("а-я")
+available_languages=("ru" "en")
+words_filename=words/words_ru
 hangman_folder=hangman_images
+languages_folder=languages
+
+# осталось только заполнить файлы с локализацией и вставить их использование в коде
+function set_language() {
+    echo "Доступные языки для игры: ${available_languages[@]}"
+    read -p "Выберите язык: " language
+    if ! [[ "${available_languages[@]}" =~ "${language}" ]]
+    then
+        echo "Выберите корректный язык!"
+        echo
+        set_language
+    fi
+    while read line
+    do
+        if [[ $line == '-----' ]]
+        then
+            langset+=("$curr")
+            curr=""
+        else
+            curr="${curr}${line}\n"
+        fi
+    done < "languages/$language"
+    words_filename="words/words_$language"
+    echo
+}
+
 function init_game() {
     echo "Приветствую в игре 'Виселица'"
     echo "Вводите по одной букве или слово целиком, в противном случае будет браться первая буква"
@@ -31,28 +60,33 @@ function draw_current_hangman() {
 
 function input_new_letter() {
     read -p "Введите новую букву: " current_letter
-
+    if [[ ! "$current_letter" ]]
+    then
+        echo "Вы ничего не ввели!"
+        echo
+        input_new_letter
+    fi
     if [[ ${current_letter} == ${word_string} ]]
     then
         win
     elif [[ ${#current_letter} -eq ${#word[@]} ]]
     then
         echo "Неверное слово! Попробуйте другое слово или букву!"
+        echo
         input_new_letter
-    else
-        current_letter=${current_letter:0:1}
-        current_letter=`echo "$current_letter" | sed 's/[А-Я]/\L&/g'`
     fi
-
-    if [[ ! "$current_letter" || "$current_letter" != *[а-я]* ]]
+    current_letter=${current_letter:0:1}
+    current_letter=`echo ${current_letter,} | sed -n "/[${langset[0]}]/p"`
+    if [[ "$current_letter" == "" ]]
     then
         echo "Вы ввели недопустимый символ! (цифру, пробел и т.п.)"
+        echo
         input_new_letter
     fi
-
-    if [[ "${correct_letters[*]}" =~ "${current_letter}" || "${wrong_letters[*]}" =~ "${current_letter}"  ]]
+    if [[ "${correct_letters[@]}" =~ "${current_letter}" || "${wrong_letters[@]}" =~ "${current_letter}"  ]]
     then
         echo "Вы уже вводили данную букву!"
+        echo
         input_new_letter
     fi
 
