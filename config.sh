@@ -1,7 +1,7 @@
 #!/bin/bash
 # настройки языка
 language=ru
-langset=("а-я")
+langset=("а-я" "А-Я")
 available_languages=("ru" "en")
 
 # сколько ошибок может совершить пользователь
