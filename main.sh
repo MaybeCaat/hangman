@@ -5,6 +5,14 @@
 . ./languages.sh
 . ./new_letter.sh
 
+if [[ `uname` == 'Darwin' ]]
+then 
+    brew install gnu-sed
+    brew install coreutils
+    alias sed='gsed'
+    alias shuf='gshuf'
+fi
+
 # установка локализации
 export LANG=ru_RU.UTF-8
 
