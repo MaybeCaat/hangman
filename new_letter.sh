@@ -21,7 +21,7 @@ function input_new_letter() {
     
     # если ввели не слово (длина не сходится)
     current_letter=${current_letter:0:1}
-    current_letter=`echo ${current_letter} | sed -n "/[${langset[0]}]/p" | sed "s/[${langset[1]}]/\L&/g"`
+    current_letter=`echo ${current_letter} | $act_sed -n "/[${langset[0]}]/p" | $act_sed "s/[${langset[1]}]/\L&/g"`
     if [[ "$current_letter" == "" ]]
     then
         echo "Вы ввели недопустимый символ! (цифру, пробел и т.п.)"

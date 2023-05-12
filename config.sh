@@ -1,5 +1,7 @@
 #!/bin/bash
 # настройки языка
+act_sed=sed
+act_shuf=shuf
 language=ru
 langset=("а-я" "А-Я")
 available_languages=("ru" "en")

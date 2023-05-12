@@ -15,8 +15,8 @@ then
     then
         brew install coreutils
     fi
-    alias sed='gsed'
-    alias shuf='gshuf'
+    act_sed='gsed'
+    act_shuf='gshuf'
 fi
 
 # установка локализации
@@ -29,7 +29,7 @@ function init_game() {
     echo
     
     # выбор случайного слова и заполнение переменных под него
-    word_string=(`shuf -n 1 $words_filename`)
+    word_string=(`$act_shuf -n 1 $words_filename`)
     word=(`echo $word_string | grep -o .`)
 
     correct_letters=()
