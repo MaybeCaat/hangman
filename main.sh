@@ -7,8 +7,14 @@
 
 if [[ `uname` == 'Darwin' ]]
 then 
-    brew install gnu-sed
-    brew install coreutils
+    if [[ `which gsed` == '' ]]
+    then
+        brew install gnu-sed
+    fi
+    if [[ `which gshuf` == '' ]]
+    then
+        brew install coreutils
+    fi
     alias sed='gsed'
     alias shuf='gshuf'
 fi
